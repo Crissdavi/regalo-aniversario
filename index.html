@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversario mi amor ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 30px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #4a90e2;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .distancia-txt {
+            font-style: italic;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* ESTILOS DEL CARRUSEL DE FOTOS */
+        .carrusel {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .btn-carrusel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(74, 144, 226, 0.7);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .btn-carrusel:hover {
+            background: rgba(74, 144, 226, 0.9);
+        }
+
+        .btn-prev { left: 10px; }
+        .btn-next { right: 10px; }
+
+        /* CONTADOR */
+        .contador {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .caja-tiempo {
+            background: #4a90e2;
+            color: white;
+            padding: 10px 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .numero {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .etiqueta {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .mensaje {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        .corazon {
+            color: #e25c5c;
+            font-size: 1.5rem;
+            animation: latido 1.2s infinite;
+            margin-top: 15px;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Feliz Aniversario ❤️</h1>
+        <p class="distancia-txt">No importa la distancia, los kilómetros no separan lo que el corazón une.</p>
+        
+        <!-- CARRUSEL CON MUCHAS FOTOS -->
+        <div class="carrusel">
+            <!-- Pon aquí todas las fotos locales que quieras en orden -->
+            <img src="foto1.jpeg" alt="Foto 1" class="slide active">
+            <img src="foto2.jpeg" alt="Foto 2" class="slide">
+            <img src="foto3.jpeg" alt="Foto 3" class="slide">
+            <img src="foto4.jpeg" alt="Foto 4" class="slide">
+            <img src="foto5.jpeg" alt="Foto 5" class="slide">
+            <img src="foto6.jpeg" alt="Foto 6" class="slide">
+            <img src="foto7.jpeg" alt="Foto 7" class="slide">
+            <img src="foto8.jpeg" alt="Foto 8" class="slide">
+            
+            <!-- Botones para avanzar y retroceder -->
+            <button class="btn-carrusel btn-prev" onclick="cambiarSlide(-1)">&#10094;</button>
+            <button class="btn-carrusel btn-next" onclick="cambiarSlide(1)">&#10095;</button>
+        </div>
+
+        <p style="margin-top:20px; font-weight: bold; color: #4a90e2;">Llevamos juntos:</p>
+        
+        <!-- CONTADOR -->
+        <div class="contador">
+            <div class="caja-tiempo">
+                <span class="numero" id="dias">00</span>
+                <span class="etiqueta">Días</span>
+            </div>
+            <div class="caja-tiempo">
+                <span class="numero" id="horas">00</span>
+                <span class="etiqueta">Horas</span>
+            </div>
+            <div class="caja-tiempo">
+                <span class="numero" id="minutos">00</span>
+                <span class="etiqueta">Min</span>
+            </div>
+            <div class="caja-tiempo">
+                <span class="numero" id="segundos">00</span>
+                <span class="etiqueta">Seg</span>
+            </div>
+        </div>
+
+        <!-- REPRODUCTOR DE MÚSICA -->
+        <div style="margin-top: 20px;">
+            <p style="font-size: 0.85rem; color: #777; margin-bottom: 5px;">🎵 Nuestra canción:</p>
+            <audio controls autoplay loop style="width: 100%; max-width: 300px;">
+                <source src="mi-cancion.mpeg" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+        </div>
+
+        <!-- TU MENSAJE -->
+        <p class="mensaje">
+            Cada día que pasa es un día menos para volver a vernos. Gracias por ser mi apoyo, mi sonrisa a la distancia y mi persona favorita. ¡Te amo muchísimo! 👩‍❤️‍👨
+        </p>
+
+        <div class="corazon">❤️</div>
+    </div>
+
+    <script>
+        // LÓGICA DEL CARRUSEL DE FOTOS
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function cambiarSlide(direccion) {
+            slides[slideIndex].classList.remove("active"); // Oculta la foto actual
+            
+            slideIndex += direccion;
+            
+            // Si llega al final, vuelve a la primera foto
+            if (slideIndex >= slides.length) { slideIndex = 0; }
+            // Si va hacia atrás desde la primera, va a la última foto
+            if (slideIndex < 0) { slideIndex = slides.length - 1; }
+            
+            slides[slideIndex].classList.add("active"); // Muestra la nueva foto
+        }
+
+        // CONFIGURA AQUÍ TU FECHA DE ANIVERSARIO (Año, Mes - 1, Día, Hora, Minutos)
+        // Nota: Enero es 0, Febrero es 1, Marzo es 2... Junio es 5, etc.
+        const fechaAniversario = new Date(2025, 5, 6, 0, 0, 0); 
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = ahora - fechaAniversario;
+
+            const msPorDia = 1000 * 60 * 60 * 24;
+            const msPorHora = 1000 * 60 * 60;
+            const msPorMinuto = 1000 * 60;
+
+            const dias = Math.floor(diferencia / msPorDia);
+            const horas = Math.floor((diferencia % msPorDia) / msPorHora);
+            const minutos = Math.floor((diferencia % msPorHora) / msPorMinuto);
+            const segundos = Math.floor((diferencia % msPorMinuto) / 1000);
+
+            document.getElementById('dias').innerText = dias;
+            document.getElementById('horas').innerText = horas < 10 ? '0' + horas : horas;
+            document.getElementById('minutos').innerText = minutos < 10 ? '0' + minutes : minutos;
+            document.getElementById('segundos').innerText = segundos < 10 ? '0' + segundos : segundos;
+        }
+
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+    </script>
+</body>
+</html>
